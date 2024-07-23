@@ -1,0 +1,57 @@
+﻿<Window x:Class="MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM"
+        mc:Ignorable="d"
+        Title="Сумматор 8000" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="MaxWidth" Value="300"/>
+            <Setter Property="Margin" Value="100,0,100,0"/>
+
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="MaxWidth" Value="300"/>
+            <Setter Property="Margin" Value="100,0,100,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="Margin" Value="100,5,100,0"/>
+        </Style>
+    </Window.Resources>
+    <TabControl>
+        <TabItem Header="Вкладка 1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="150" />
+                    <RowDefinition Height="185*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" DataContext="{Binding SelectedPhone}">
+                    <TextBlock Text="Поля для ввода"  />
+                    <TextBlock Text="Первое число" />
+                    <TextBox Text="{Binding First_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Второе число" />
+                    <TextBox Text="{Binding Second_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="Сумма" />
+                    <TextBox IsReadOnly="True" Text="{Binding Path=Total_num, Mode=OneWay}" />
+
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="0,0,0,0">
+                    <Button Command="{Binding AddCommand}">Получить результат</Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Вкладка 2">Вторая вкладка</TabItem>
+    </TabControl>
+    
+</Window>
