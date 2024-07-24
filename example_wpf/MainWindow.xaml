@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
         mc:Ignorable="d"
-        Title="Сумматор 8000" Height="350" Width="525">
+        Title="Сумматор 8000" Height="350" MinWidth="500" Width="525" MaxWidth="600">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -16,13 +16,11 @@
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontSize" Value="14" />
             <Setter Property="MinWidth" Value="150"/>
             <Setter Property="MaxWidth" Value="300"/>
             <Setter Property="Margin" Value="100,0,100,0"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="MinWidth" Value="150"/>
             <Setter Property="MaxWidth" Value="200"/>
@@ -32,26 +30,41 @@
     <TabControl>
         <TabItem Header="Вкладка 1">
             <Grid>
+
                 <Grid.RowDefinitions>
                     <RowDefinition MinHeight="150" />
                     <RowDefinition Height="185*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" DataContext="{Binding SelectedPhone}">
-                    <TextBlock Text="Поля для ввода"  />
+                <StackPanel Grid.Row="0" Margin="5" DataContext="{Binding SelectedPhone}" Grid.ColumnSpan="2">
+                    <TextBlock TextAlignment="Center" Text="Поля для ввода"  />
                     <TextBlock Text="Первое число" />
-                    <TextBox Text="{Binding First_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox  PreviewTextInput="NumberValidationTextBox" CommandManager.PreviewExecuted="textBox_PreviewExecuted" Text="{Binding First_num, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Второе число" />
-                    <TextBox Text="{Binding Second_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox PreviewTextInput="NumberValidationTextBox" CommandManager.PreviewExecuted="textBox_PreviewExecuted" Text="{Binding Second_num, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Сумма" />
                     <TextBox IsReadOnly="True" Text="{Binding Path=Total_num, Mode=OneWay}" />
 
                 </StackPanel>
-                <StackPanel Grid.Row="1" Margin="0,0,0,0">
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                     <Button Command="{Binding AddCommand}">Получить результат</Button>
+                    <Button Command="{Binding AddCalc}">Сохранить результат</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Вкладка 2">Вторая вкладка</TabItem>
+        <TabItem Header="Вкладка 2">
+            <Grid>
+                <ListView ItemsSource="{Binding Calculations}">
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn  Width="100" DisplayMemberBinding="{Binding Path=First_num}">Первое число</GridViewColumn>
+                            <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=Second_num}">Второе число</GridViewColumn>
+                            <GridViewColumn Width="70" DisplayMemberBinding="{Binding Path=Total_num}">Сумма</GridViewColumn>
+                            <GridViewColumn Width="140" DisplayMemberBinding="{Binding Path=Time}">Дата</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
     </TabControl>
-    
+
 </Window>

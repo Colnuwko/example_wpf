@@ -30,4 +30,4 @@ namespace MVVM
             this.execute(parameter);
         }
     }
-}
+} 
