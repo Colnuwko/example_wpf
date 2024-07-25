@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
         mc:Ignorable="d"
-        Title="Сумматор 8000" Height="350" MinWidth="500" Width="525" MaxWidth="600">
+        Title="Сумматор 8000" MinHeight="350" Height="350"  MinWidth="500" Width="525" MaxWidth="600">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
