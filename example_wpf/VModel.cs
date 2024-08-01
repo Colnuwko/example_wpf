@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using System;
 
 namespace MVVM
 {
@@ -20,10 +21,11 @@ namespace MVVM
         {
             get
             {
+                
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                     
+                      Console.WriteLine("dfdaf");
                       my_class.set_result();
                   }));
             }
@@ -46,13 +48,13 @@ namespace MVVM
 
         
 
-    public Calculate SelectedPhone
+    public Calculate calculate
         {
             get { return my_class; }
             set
             {
                 my_class = value;
-                OnPropertyChanged("SelectedPhone");
+                OnPropertyChanged("calculate");
             }
         }
 
@@ -63,7 +65,7 @@ namespace MVVM
         public ApplicationViewModel()
         {
 
-            my_class = new Calculate(0, 0, 0);
+            my_class = new Calculate("", "", "");
             my_json = new Json { };
             my_calculations = my_json.GetCalculations;
 

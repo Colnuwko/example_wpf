@@ -35,12 +35,12 @@
                     <RowDefinition MinHeight="150" />
                     <RowDefinition Height="185*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Margin="5" DataContext="{Binding SelectedPhone}" Grid.ColumnSpan="2">
+                <StackPanel Grid.Row="0" Margin="5" DataContext="{Binding calculate}" Grid.ColumnSpan="2">
                     <TextBlock TextAlignment="Center" Text="Поля для ввода"  />
                     <TextBlock Text="Первое число" />
-                    <TextBox  PreviewTextInput="NumberValidationTextBox" CommandManager.PreviewExecuted="textBox_PreviewExecuted" Text="{Binding First_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding First_num, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Второе число" />
-                    <TextBox PreviewTextInput="NumberValidationTextBox" CommandManager.PreviewExecuted="textBox_PreviewExecuted" Text="{Binding Second_num, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Second_num, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Сумма" />
                     <TextBox IsReadOnly="True" Text="{Binding Path=Total_num, Mode=OneWay}" />
 
